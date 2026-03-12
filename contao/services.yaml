@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  Leycommediasolutions\ContaoFriendlyCaptcha\:
+    resource: '../src/'
+    exclude: '../src/{ContaoManager,ContaoFriendlyCaptchaBundle.php}'
+
+  Leycommediasolutions\ContaoFriendlyCaptcha\Service\FriendlyCaptchaVerifier:
+    public: true

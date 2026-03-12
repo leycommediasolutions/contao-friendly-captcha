@@ -1,0 +1,30 @@
+<?php $this->extend('form_row'); ?>
+
+<?php
+$scriptTag = '<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.17/widget.module.min.js" async defer></script>';
+
+if (!\in_array($scriptTag, $GLOBALS['TL_BODY'] ?? [], true)) {
+    $GLOBALS['TL_BODY'][] = $scriptTag;
+}
+?>
+
+<?php $this->block('label'); ?>
+  <?php if ($this->label): ?>
+    <label for="ctrl_<?= $this->id ?>"<?php if ($this->class): ?> class="<?= $this->class ?>"<?php endif; ?>>
+      <span class="invisible"><?= $this->mandatoryField ?> </span><?= $this->label ?><span class="mandatory">*</span>
+    </label>
+  <?php endif; ?>
+<?php $this->endblock(); ?>
+
+<?php $this->block('field'); ?>
+  <noscript><p class="error"><?= $this->trans('ERR.friendlyCaptchaJavaScriptRequired') ?></p></noscript>
+  <?php if ($this->hasErrors()): ?>
+    <p class="error"><?= $this->getErrorAsString(); ?></p>
+  <?php endif; ?>
+
+  <?php if (!$this->canUseFriendlyCaptcha): ?>
+    <p class="error"><?= $this->trans('ERR.friendlyCaptchaInsecureConnection') ?></p>
+  <?php else: ?>
+    <?= $this->friendlyCaptchaMarkup ?>
+  <?php endif; ?>
+<?php $this->endblock(); ?>
