@@ -1,6 +1,6 @@
 # contao-friendly-captcha
 
-Friendly Captcha Form Widget für Contao 5.6.
+Friendly Captcha Form Widget
 
 ## Installation
 
